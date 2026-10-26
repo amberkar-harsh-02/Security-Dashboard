@@ -1,0 +1,37 @@
+.sev {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink-2);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sev__mark {
+  flex: none;
+  width: 4px;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--sev-info);
+}
+
+.sev--critical {
+  color: var(--ink);
+}
+
+.sev--critical .sev__mark {
+  width: 6px;
+  background: var(--sev-critical);
+}
+
+.sev--high .sev__mark {
+  background: var(--sev-high);
+}
+
+.sev--medium .sev__mark {
+  background: var(--sev-medium);
+}
+
+.sev--low .sev__mark {
+  background: var(--sev-low);
+}

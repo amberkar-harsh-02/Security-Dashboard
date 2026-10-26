@@ -1,0 +1,144 @@
+/*
+  Design tokens.
+
+  Dark is the default: analysts keep this open for a full shift. Light is a separate,
+  hand-set theme, not an inversion.
+
+  Severity colors are reserved for severity. They are always shown with a text label.
+  The four alert levels were checked as adjacent stacked-bar fills with the dataviz
+  palette validator (CVD and normal-vision separation). `--sev-*` are fills;
+  `--sev-*-ink` are text-safe variants.
+*/
+
+:root {
+  color-scheme: dark;
+
+  --bg: #1a2029;
+  --surface: #222a35;
+  --surface-2: #2a3340;
+  --surface-3: #323c4a;
+  --selected: #2a3340;
+  --line: #323c4a;
+  --line-strong: #46525f;
+
+  --ink: #e4e8ee;
+  --ink-2: #a9b2bf;
+  --ink-3: #8d97a6;
+
+  --accent: #8fa8ff;
+  --accent-ink: #0f1622;
+  --accent-soft: rgba(143, 168, 255, 0.14);
+  --focus: #8fa8ff;
+
+  /* Chart series (dataviz reference slots 1 and 3, validated for this surface). */
+  --series-1: #3987e5;
+  --series-2: #199e70;
+
+  --sev-critical: #d93a78;
+  --sev-high: #e7782b;
+  --sev-medium: #e8c13a;
+  --sev-low: #4c9be8;
+  --sev-info: #7d8794;
+
+  --sev-critical-ink: #f07aa6;
+  --sev-high-ink: #f29a5c;
+  --sev-medium-ink: #e8c13a;
+  --sev-low-ink: #7eb6ef;
+  --sev-info-ink: #a9b2bf;
+
+  --ok: #4fb286;
+  --danger-ink: #f07aa6;
+
+  --shadow-pop: 0 8px 24px rgba(5, 8, 14, 0.45);
+
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  /* Type scale for a dense tool: 13 / 14 / 16 / 20 / 28 */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  --radius: 4px;
+  --rail-width: 216px;
+  --topbar-height: 52px;
+  --row-height: 32px;
+}
+
+/* Light theme: chosen by the viewer, or by the system when no choice is saved. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg: #eef1f5;
+    --surface: #ffffff;
+    --surface-2: #f3f5f8;
+    --surface-3: #e6eaf0;
+    --selected: #dde3eb;
+    --line: #d5dbe3;
+    --line-strong: #b8c1cc;
+    --ink: #18202b;
+    --ink-2: #445061;
+    --ink-3: #5b6676;
+    --accent: #3a5bd9;
+    --accent-ink: #ffffff;
+    --accent-soft: rgba(58, 91, 217, 0.1);
+    --focus: #3a5bd9;
+    --series-1: #2a78d6;
+    --series-2: #1baf7a;
+    --sev-critical: #a11f78;
+    --sev-high: #bf4517;
+    --sev-medium: #d8a80c;
+    --sev-low: #2a6fc2;
+    --sev-info: #6b7480;
+    --sev-critical-ink: #a11f78;
+    --sev-high-ink: #b03f14;
+    --sev-medium-ink: #85620a;
+    --sev-low-ink: #2a6fc2;
+    --sev-info-ink: #5b6676;
+    --ok: #217a52;
+    --danger-ink: #a11f78;
+    --shadow-pop: 0 8px 24px rgba(24, 32, 43, 0.14);
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #eef1f5;
+  --surface: #ffffff;
+  --surface-2: #f3f5f8;
+  --surface-3: #e6eaf0;
+  --selected: #dde3eb;
+  --line: #d5dbe3;
+  --line-strong: #b8c1cc;
+  --ink: #18202b;
+  --ink-2: #445061;
+  --ink-3: #5b6676;
+  --accent: #3a5bd9;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(58, 91, 217, 0.1);
+  --focus: #3a5bd9;
+  --series-1: #2a78d6;
+  --series-2: #1baf7a;
+  --sev-critical: #a11f78;
+  --sev-high: #bf4517;
+  --sev-medium: #d8a80c;
+  --sev-low: #2a6fc2;
+  --sev-info: #6b7480;
+  --sev-critical-ink: #a11f78;
+  --sev-high-ink: #b03f14;
+  --sev-medium-ink: #85620a;
+  --sev-low-ink: #2a6fc2;
+  --sev-info-ink: #5b6676;
+  --ok: #217a52;
+  --danger-ink: #a11f78;
+  --shadow-pop: 0 8px 24px rgba(24, 32, 43, 0.14);
+}

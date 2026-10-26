@@ -1,0 +1,240 @@
+.performance__window {
+  margin-left: auto;
+}
+
+.perf {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  margin-bottom: var(--space-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+/* --- Resource list (left) ------------------------------------------------------------ */
+
+.perf__list {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-2);
+  border-right: 1px solid var(--line);
+}
+
+.perf__tab {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 88px;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.perf__tab:hover {
+  background: var(--surface-2);
+}
+
+.perf__tab[aria-selected="true"] {
+  border-color: var(--line-strong);
+  background: var(--selected);
+}
+
+.perf__tab-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.perf__tab-label {
+  font-weight: 600;
+}
+
+.perf__tab-value {
+  overflow: hidden;
+  color: var(--ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.perf__tab-detail {
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+}
+
+/* The selected row's background is lighter, so muted text steps up to keep 4.5:1. */
+.perf__tab[aria-selected="true"] .perf__tab-detail {
+  color: var(--ink-2);
+}
+
+/* --- Selected resource (right) ------------------------------------------------------- */
+
+.perf__panel {
+  min-width: 0;
+  padding: var(--space-4) var(--space-5) var(--space-5);
+}
+
+.perf__panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.perf__panel-head h2 {
+  font-size: var(--text-lg);
+}
+
+.perf__panel-value {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  font-variant-numeric: proportional-nums;
+}
+
+.perf-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-3) var(--space-5);
+  margin: var(--space-4) 0 0;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+
+.perf-stat dt {
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+}
+
+.perf-stat dd {
+  margin: 2px 0 0;
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+
+.perf-disks {
+  margin-top: var(--space-4);
+}
+
+.perf-meter {
+  display: block;
+  position: relative;
+  width: 100%;
+  min-width: 120px;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--accent-soft);
+}
+
+.perf-meter span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+.perf-meter--warning {
+  background: color-mix(in srgb, var(--sev-medium) 22%, transparent);
+}
+
+.perf-meter--warning span {
+  background: var(--sev-medium);
+}
+
+.perf-meter--danger {
+  background: color-mix(in srgb, var(--sev-critical) 22%, transparent);
+}
+
+.perf-meter--danger span {
+  background: var(--sev-critical);
+}
+
+.perf-cores {
+  margin-top: var(--space-5);
+}
+
+.perf-cores h3 {
+  margin-bottom: var(--space-2);
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+.perf-cores ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.perf-cores li {
+  padding: var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.perf-cores__label {
+  display: flex;
+  justify-content: space-between;
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+}
+
+.perf-cores__label strong {
+  color: var(--ink);
+}
+
+.perf-sort {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.perf-sort:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .perf {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .perf__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .perf__tab {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .perf__tab .line-chart--spark {
+    display: none;
+  }
+
+  .perf__panel {
+    padding: var(--space-4);
+  }
+
+  .performance__window {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .perf-processes th:nth-child(2),
+  .perf-processes td:nth-child(2),
+  .perf-processes th:nth-child(3),
+  .perf-processes td:nth-child(3) {
+    display: none;
+  }
+}

@@ -1,0 +1,153 @@
+.rules__header {
+  margin-bottom: var(--space-2);
+}
+
+.rules__reload {
+  margin-left: auto;
+}
+
+.rules__lede {
+  margin-bottom: var(--space-3);
+}
+
+.rules__message:empty {
+  display: none;
+}
+
+.rules__message {
+  margin-bottom: var(--space-3);
+  color: var(--ink-2);
+}
+
+.rules__message--error {
+  color: var(--danger-ink);
+}
+
+.rule-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.rule {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 140px;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: calc(var(--topbar-height) + var(--space-4));
+}
+
+/* The rule opened from a link: an accent bar only, so text keeps its normal contrast. */
+.rule--target {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.rule__switch {
+  padding-top: 2px;
+  padding-left: var(--space-2);
+}
+
+.rule__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+}
+
+.rule__name {
+  font-size: var(--text-md);
+}
+
+.rule__state {
+  padding: 0 6px;
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+}
+
+.rule--off .rule__name,
+.rule--off .rule__description {
+  color: var(--ink-3);
+}
+
+.rule__description {
+  max-width: 75ch;
+  margin-top: var(--space-1);
+}
+
+.rule__trigger {
+  margin-top: var(--space-1);
+  color: var(--ink-2);
+}
+
+.rule__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.rule__meta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rule__auto-block {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--ink-2);
+}
+
+.rule__auto-block .input {
+  height: 28px;
+}
+
+.rule__meta .button {
+  margin-left: calc(-1 * var(--space-3));
+}
+
+.rule__meta a + .button,
+.rule__meta label + .button {
+  margin-left: 0;
+}
+
+.rule__definition {
+  max-width: 75ch;
+  max-height: none;
+}
+
+.rule__count {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: var(--space-2);
+  text-align: right;
+  font-size: var(--text-xs);
+}
+
+.rule__count a {
+  color: var(--ink);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 720px) {
+  .rule {
+    grid-template-columns: 44px minmax(0, 1fr);
+  }
+
+  .rule__count {
+    grid-column: 2;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .rules__reload {
+    margin-left: 0;
+  }
+}

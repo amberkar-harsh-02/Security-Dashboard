@@ -1,0 +1,99 @@
+.events-table td {
+  vertical-align: top;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.events-table__toggle {
+  width: 36px;
+}
+
+.events-table__toggle .button {
+  height: 24px;
+  padding: 0 4px;
+}
+
+.events-table__time {
+  white-space: nowrap;
+  color: var(--ink-2);
+}
+
+.events-table__host {
+  white-space: nowrap;
+}
+
+.events-table__message {
+  overflow-wrap: anywhere;
+}
+
+.outcome {
+  color: var(--ink-2);
+}
+
+.outcome--failure {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.events-table tr.is-expanded td {
+  border-bottom-color: transparent;
+}
+
+.events-table__expanded td {
+  padding-bottom: var(--space-4);
+}
+
+.events-table__expanded .fields {
+  margin-top: 0;
+}
+
+.events-table__block {
+  margin-top: var(--space-2);
+  font-size: var(--text-xs);
+}
+
+/* Field lists: used in expanded events and on the alert page. */
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--space-2) var(--space-5);
+  margin: var(--space-4) 0 0;
+}
+
+.fields dt {
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+}
+
+.fields dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.raw {
+  max-height: 240px;
+  margin: var(--space-3) 0 0;
+  padding: var(--space-3);
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Phones: keep the toggle, time and message; details stay one tap away. */
+@media (max-width: 720px) {
+  .events-table thead th:nth-child(n + 3):not(:last-child),
+  .events-table tbody tr:not(.events-table__expanded) td:nth-child(n + 3):not(:last-child) {
+    display: none;
+  }
+
+  .events-table__time {
+    white-space: normal;
+    width: 92px;
+  }
+}

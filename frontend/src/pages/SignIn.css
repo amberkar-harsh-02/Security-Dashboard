@@ -1,0 +1,74 @@
+.signin {
+  min-height: 100vh;
+  padding: 14vh var(--space-5) var(--space-6);
+}
+
+.signin__column {
+  width: min(360px, 100%);
+  margin-left: clamp(0px, 12vw, 200px);
+}
+
+.signin__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  font-weight: 600;
+}
+
+.signin__title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.signin__lede {
+  margin-top: var(--space-2);
+  color: var(--ink-3);
+}
+
+.signin__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+.field .input {
+  height: 36px;
+}
+
+.signin__error {
+  padding: var(--space-2) var(--space-3);
+  border-left: 3px solid var(--danger-ink);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.signin__submit {
+  justify-content: center;
+  height: 36px;
+}
+
+.signin__help {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+}
+
+.signin__help code {
+  color: var(--ink-2);
+}

@@ -1,0 +1,73 @@
+.blocked .section {
+  margin-bottom: var(--space-6);
+}
+
+.blocked .notice {
+  margin-bottom: var(--space-5);
+}
+
+.blocked__enforced {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  border-left-color: var(--ok);
+}
+
+.block-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+
+.block-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+}
+
+.block-form__field .input {
+  width: 180px;
+  font-size: var(--text-sm);
+}
+
+.block-form__reason .input {
+  width: 280px;
+}
+
+.block-form__error {
+  flex-basis: 100%;
+  color: var(--danger-ink);
+}
+
+.blocked__help {
+  margin-top: var(--space-3);
+  font-size: var(--text-xs);
+}
+
+.blocked__help a {
+  text-decoration: underline;
+}
+
+.blocked__message:empty {
+  display: none;
+}
+
+.blocked__message {
+  margin-bottom: var(--space-4);
+  color: var(--ink-2);
+}
+
+.blocked__action {
+  text-align: right;
+}
+
+@media (max-width: 720px) {
+  .block-form__field,
+  .block-form__field .input,
+  .block-form__reason .input {
+    width: 100%;
+  }
+}

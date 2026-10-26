@@ -1,0 +1,191 @@
+.overview__window {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--ink-3);
+}
+
+.overview .band {
+  margin-bottom: var(--space-5);
+}
+
+/* --- Figures: one hero (open alerts), three supporting numbers ------------------------- */
+
+.overview__figures {
+  display: grid;
+  grid-template-columns: minmax(280px, 2fr) repeat(3, minmax(140px, 1fr));
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--line);
+}
+
+.figure__label {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.figure__value {
+  margin-top: var(--space-1);
+  font-size: 3.25rem;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variant-numeric: proportional-nums;
+}
+
+.figure__value--small {
+  font-size: var(--text-xl);
+  letter-spacing: -0.01em;
+}
+
+.figure__note {
+  margin-top: 2px;
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+}
+
+.figure--hero {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  column-gap: var(--space-5);
+}
+
+.figure--hero .figure__label {
+  grid-column: 1 / -1;
+}
+
+.figure__breakdown {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  align-content: center;
+  gap: var(--space-1) var(--space-5);
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.figure__breakdown li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-width: 112px;
+}
+
+.figure__count {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* --- Lower grid ------------------------------------------------------------------------- */
+
+.overview__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(300px, 2fr);
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.overview__main,
+.overview__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.is-refreshing {
+  opacity: 0.6;
+  transition: opacity 150ms ease;
+}
+
+.queue__title a {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.queue__rule {
+  display: block;
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+}
+
+.queue td {
+  height: 44px;
+}
+
+/* Horizontal bar list for rules. Neutral ink: the bars show counts, not severity. */
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bars__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(60px, 1fr) 40px;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.bars__name {
+  overflow: hidden;
+  color: var(--ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bars__track {
+  height: 8px;
+}
+
+.bars__fill {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  border-radius: 0 4px 4px 0;
+  background: var(--ink-3);
+}
+
+.bars__value {
+  text-align: right;
+}
+
+@media (max-width: 1200px) {
+  .overview__figures {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .figure--hero {
+    grid-column: 1 / -1;
+  }
+
+  .overview__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .overview__figures {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .queue__events {
+    display: none;
+  }
+
+  .figure--hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .figure__value {
+    font-size: 2.75rem;
+  }
+}

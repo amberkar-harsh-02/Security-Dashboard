@@ -1,0 +1,22 @@
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.status--open {
+  color: var(--ink);
+}
+
+.status--open svg {
+  color: var(--accent);
+}
+
+.status--acknowledged {
+  color: var(--ink-2);
+}
+
+.status--closed {
+  color: var(--ink-3);
+}

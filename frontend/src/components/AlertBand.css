@@ -1,0 +1,280 @@
+.band {
+  padding: var(--space-4) var(--space-4) var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: opacity 150ms ease;
+}
+
+.band--dimmed {
+  opacity: 0.6;
+}
+
+.band__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-5);
+  margin-bottom: var(--space-3);
+}
+
+.band__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ink-2);
+}
+
+.band__legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.band__swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.band__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-left: auto;
+}
+
+.band__hint {
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+}
+
+.band__plot {
+  position: relative;
+}
+
+.band__interactive {
+  position: relative;
+  cursor: crosshair;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.band__interactive:focus-visible {
+  outline-offset: 4px;
+}
+
+.band svg {
+  display: block;
+  overflow: visible;
+}
+
+/* Fills: severity tokens, shared by legend swatches and SVG marks. */
+.band__fill--critical {
+  fill: var(--sev-critical);
+  background: var(--sev-critical);
+}
+
+.band__fill--high {
+  fill: var(--sev-high);
+  background: var(--sev-high);
+}
+
+.band__fill--medium {
+  fill: var(--sev-medium);
+  background: var(--sev-medium);
+}
+
+.band__fill--low {
+  fill: var(--sev-low);
+  background: var(--sev-low);
+}
+
+.band__fill--info {
+  fill: var(--sev-info);
+  background: var(--sev-info);
+}
+
+.band__grid {
+  stroke: var(--line);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+.band__baseline {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+.band__axis {
+  fill: var(--ink-3);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.band__strip-label {
+  fill: var(--ink-2);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.band__selection {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+.band__hover {
+  fill: var(--ink);
+  opacity: 0.05;
+}
+
+.band__events-line {
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.band__events-area {
+  fill: var(--ink-3);
+  opacity: 0.1;
+}
+
+.band__events-dot {
+  fill: var(--ink-3);
+  stroke: var(--surface);
+  stroke-width: 2;
+}
+
+.band__empty {
+  position: absolute;
+  left: 0;
+  right: 0;
+  color: var(--ink-3);
+  text-align: center;
+  pointer-events: none;
+}
+
+.band__tooltip {
+  position: absolute;
+  top: 0;
+  z-index: 3;
+  min-width: 150px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-pop);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.band__tooltip--left {
+  transform: translateX(-100%);
+}
+
+.band__tooltip-time {
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+}
+
+.band__tooltip-total {
+  margin: 2px 0 4px;
+  color: var(--ink-2);
+}
+
+.band__tooltip-total strong {
+  color: var(--ink);
+  font-size: var(--text-md);
+}
+
+.band__tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink-2);
+}
+
+.band__tooltip-row strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.band__tooltip-events {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid var(--line);
+}
+
+.band__key {
+  width: 12px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+.band__key--critical {
+  background: var(--sev-critical);
+}
+
+.band__key--high {
+  background: var(--sev-high);
+}
+
+.band__key--medium {
+  background: var(--sev-medium);
+}
+
+.band__key--low {
+  background: var(--sev-low);
+}
+
+.band__table-wrap {
+  max-height: 320px;
+  margin-top: var(--space-3);
+  overflow: auto;
+  border-top: 1px solid var(--line);
+}
+
+.band__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-xs);
+}
+
+.band__table th,
+.band__table td {
+  height: 28px;
+  padding: 0 var(--space-3);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  font-weight: 400;
+}
+
+.band__table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+.band__table .num {
+  text-align: right;
+}
+
+@media (max-width: 720px) {
+  .band__hint {
+    display: none;
+  }
+
+  .band__actions {
+    margin-left: 0;
+  }
+}

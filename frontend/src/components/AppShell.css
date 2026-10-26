@@ -1,0 +1,301 @@
+.shell {
+  display: grid;
+  grid-template-columns: var(--rail-width) minmax(0, 1fr);
+  grid-template-rows: var(--topbar-height) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-2);
+  top: -48px;
+  z-index: 20;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.skip-link:focus {
+  top: var(--space-2);
+}
+
+/* --- Rail ----------------------------------------------------------------------------- */
+
+.rail {
+  grid-row: 1 / span 2;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 0 var(--space-2) var(--space-3);
+  border-right: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--topbar-height);
+  padding: 0 var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.brand__name {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rail__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rail__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 36px;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius);
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+.rail__link:hover {
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.rail__link.active {
+  background: var(--selected);
+  color: var(--ink);
+}
+
+.rail__link.active svg {
+  color: var(--accent);
+}
+
+.rail__badge {
+  margin-left: auto;
+  min-width: 24px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--surface-3);
+  color: var(--ink);
+  font-size: var(--text-xs);
+  text-align: center;
+}
+
+.rail__footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+}
+
+.rail__user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-left: var(--space-2);
+}
+
+.rail__username {
+  overflow: hidden;
+  color: var(--ink-2);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rail__signout {
+  padding: 0 var(--space-2);
+}
+
+/* --- Top bar -------------------------------------------------------------------------- */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0 var(--space-5);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.topbar__end {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-left: auto;
+}
+
+.search {
+  position: relative;
+  flex: 0 1 380px;
+  min-width: 0;
+}
+
+.search__icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-3);
+  pointer-events: none;
+}
+
+.search__input {
+  width: 100%;
+  padding-left: 32px;
+}
+
+.segmented {
+  display: inline-flex;
+  margin: 0;
+  padding: 2px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+
+.segmented__option {
+  position: relative;
+}
+
+.segmented__option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.segmented__option span {
+  display: block;
+  padding: 3px 10px;
+  border-radius: 3px;
+  color: var(--ink-3);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.segmented__option input:checked + span {
+  background: var(--surface-3);
+  color: var(--ink);
+}
+
+.segmented__option input:focus-visible + span {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.live__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ink-3);
+}
+
+.live--live .live__dot {
+  background: var(--ok);
+}
+
+.live--reconnecting .live__dot {
+  background: var(--sev-medium);
+}
+
+.live__rate {
+  color: var(--ink-2);
+}
+
+.content {
+  min-width: 0;
+}
+
+.content:focus {
+  outline: none;
+}
+
+/* --- Narrow screens: icon rail, wrapped top bar ---------------------------------------- */
+
+@media (max-width: 1100px) {
+  .live__rate {
+    display: none;
+  }
+}
+
+@media (max-width: 960px) {
+  .shell {
+    --rail-width: 56px;
+  }
+
+  .brand__name,
+  .rail__label,
+  .rail__username {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .rail__link {
+    justify-content: center;
+    position: relative;
+  }
+
+  .rail__badge {
+    position: absolute;
+    top: 0;
+    right: -4px;
+    min-width: 18px;
+    padding: 0 4px;
+    font-size: 11px;
+  }
+
+  .rail__user {
+    justify-content: center;
+    padding: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .shell {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .topbar {
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+    padding: var(--space-2) var(--space-4);
+  }
+
+  .search {
+    flex: 1 1 100%;
+  }
+
+  .topbar__end {
+    gap: var(--space-3);
+  }
+}
