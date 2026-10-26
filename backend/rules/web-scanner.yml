@@ -1,0 +1,14 @@
+id: web-scanner
+name: Vulnerability scanner
+description: >
+  Web requests with the user agent of a known scanning tool such as sqlmap,
+  Nikto or Nmap.
+severity: medium
+type: match
+where:
+  category: web
+  raw|regex: "(?i)sqlmap|nikto|nmap|masscan|wpscan|gobuster|dirbuster|nuclei"
+group_by: [src_ip]
+dedupe: 1h
+title: "Vulnerability scanner at {src_ip}"
+mitre: {tactic: Reconnaissance, technique: T1595.002, name: Vulnerability Scanning}

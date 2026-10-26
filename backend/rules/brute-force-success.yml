@@ -1,0 +1,15 @@
+id: brute-force-success
+name: Successful login after repeated failures
+description: >
+  An address that failed to log in at least 5 times then logged in successfully.
+  The password may have been guessed. Check the account and reset its credentials.
+severity: critical
+type: sequence
+steps:
+  - where: {category: authentication, outcome: failure}
+    count: 5
+  - where: {category: authentication, action: login, outcome: success}
+group_by: [src_ip]
+window: 10m
+title: "{user} logged in from {src_ip} after repeated failures"
+mitre: {tactic: Credential Access, technique: T1110, name: Brute Force}

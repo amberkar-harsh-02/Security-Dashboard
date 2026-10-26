@@ -1,0 +1,17 @@
+id: siem-login-guessing
+name: Dashboard sign-in guessing
+description: >
+  Many failed sign-ins to this SIEM's own dashboard from one address. Someone is
+  guessing analyst passwords. The address is already refused for 5 minutes after
+  10 failures; turn on auto-block to keep it out for longer.
+severity: high
+type: threshold
+where:
+  source: siem
+  action: login
+  outcome: failure
+group_by: [src_ip]
+window: 5m
+threshold: 10
+title: "Dashboard sign-in guessing from {src_ip}"
+mitre: {tactic: Credential Access, technique: T1110.001, name: Password Guessing}

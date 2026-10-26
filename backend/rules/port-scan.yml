@@ -1,0 +1,15 @@
+id: port-scan
+name: Port scan
+description: >
+  One address connected to many different destination ports in a minute.
+  This maps which services are exposed and often comes before an attack.
+severity: medium
+type: distinct
+where: {category: network, action: connection}
+field: dst_port
+group_by: [src_ip]
+window: 1m
+threshold: 25
+dedupe: 30m
+title: "Port scan from {src_ip}"
+mitre: {tactic: Discovery, technique: T1046, name: Network Service Discovery}

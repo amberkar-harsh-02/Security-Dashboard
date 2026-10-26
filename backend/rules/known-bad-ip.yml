@@ -1,0 +1,28 @@
+- id: known-bad-source
+  name: Activity from a known-bad address
+  description: >
+    An event came from an address on the threat intelligence list
+    (intel/bad_ips.txt). Successful logins from these addresses need
+    immediate review.
+  severity: high
+  type: ioc
+  field: src_ip
+  list: bad_ips
+  group_by: [src_ip]
+  dedupe: 1h
+  title: "Activity from known-bad address {src_ip}"
+  mitre: {tactic: Initial Access, technique: T1078, name: Valid Accounts}
+
+- id: known-bad-destination
+  name: Connection to a known-bad address
+  description: >
+    A host connected out to an address on the threat intelligence list.
+    This can be malware calling home.
+  severity: high
+  type: ioc
+  field: dst_ip
+  list: bad_ips
+  group_by: [host, dst_ip]
+  dedupe: 1h
+  title: "{host} connected to known-bad address {dst_ip}"
+  mitre: {tactic: Command and Control, technique: T1071, name: Application Layer Protocol}

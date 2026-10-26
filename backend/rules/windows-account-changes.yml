@@ -1,0 +1,52 @@
+- id: new-local-account
+  name: New user account
+  description: >
+    A user account was created. Attackers create accounts to keep access.
+    Confirm the change was planned.
+  severity: medium
+  type: match
+  where: {source: windows, action: user_created}
+  group_by: [host, user]
+  title: "New account {user} on {host}"
+  mitre: {tactic: Persistence, technique: T1136.001, name: "Create Account: Local Account"}
+
+- id: privileged-group-change
+  name: Member added to an admin group
+  description: >
+    An account was added to a privileged group such as Administrators or Domain Admins.
+  severity: high
+  type: match
+  where:
+    source: windows
+    action: group_member_added
+    message|regex: "(?i)admin"
+  group_by: [host, user]
+  title: "{user} added a member to an admin group on {host}"
+  mitre: {tactic: Privilege Escalation, technique: T1098, name: Account Manipulation}
+
+- id: audit-log-cleared
+  name: Audit log cleared
+  description: >
+    The Windows security log was cleared. Attackers do this to hide what they did.
+    Legitimate clearing is rare and should be documented.
+  severity: critical
+  type: match
+  where: {source: windows, action: log_cleared}
+  group_by: [host]
+  title: "Audit log cleared on {host} by {user}"
+  mitre: {tactic: Defense Evasion, technique: T1070.001, name: "Indicator Removal: Clear Windows Event Logs"}
+
+- id: encoded-powershell
+  name: Hidden or encoded PowerShell
+  description: >
+    PowerShell started with an encoded command, a hidden window or a download
+    cradle. Common in malware and hands-on-keyboard attacks.
+  severity: high
+  type: match
+  where:
+    category: process
+    process|contains: powershell
+    raw|regex: '(?i)\s-(e|enc|encodedcommand)\s|-w(indowstyle)?\s+hidden|downloadstring|iex\s*\('
+  group_by: [host, user]
+  title: "Suspicious PowerShell by {user} on {host}"
+  mitre: {tactic: Execution, technique: T1059.001, name: PowerShell}

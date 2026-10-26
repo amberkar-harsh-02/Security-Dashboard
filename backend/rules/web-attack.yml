@@ -1,0 +1,15 @@
+id: web-attack
+name: Web application attack
+description: >
+  A web request contained an attack pattern: SQL injection, path traversal,
+  cross-site scripting or command injection. Check the response codes to see
+  whether any request succeeded.
+severity: high
+type: match
+where:
+  category: web
+  message|contains: "(possible "
+group_by: [src_ip]
+dedupe: 30m
+title: "Web attack from {src_ip} against {host}"
+mitre: {tactic: Initial Access, technique: T1190, name: Exploit Public-Facing Application}

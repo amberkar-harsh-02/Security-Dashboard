@@ -1,0 +1,8 @@
+# Known-bad IP addresses (threat intelligence list).
+# One address per line. Lines starting with # are comments.
+# These are documentation ranges (RFC 5737), used by the attack simulator.
+198.51.100.23
+198.51.100.77
+198.51.100.142
+192.0.2.66
+192.0.2.199

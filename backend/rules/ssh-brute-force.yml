@@ -1,0 +1,16 @@
+id: ssh-brute-force
+name: SSH brute force
+description: >
+  Many failed SSH logins from one address in a short time. Usually an automated
+  password-guessing tool working through a list of common accounts and passwords.
+severity: high
+type: threshold
+where:
+  source: sshd
+  outcome: failure
+  action: [login, invalid_user]
+group_by: [src_ip]
+window: 2m
+threshold: 10
+title: "SSH brute force from {src_ip}"
+mitre: {tactic: Credential Access, technique: T1110.001, name: Password Guessing}

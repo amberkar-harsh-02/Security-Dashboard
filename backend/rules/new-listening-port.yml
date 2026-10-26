@@ -1,0 +1,15 @@
+id: new-listening-port
+name: New listening port
+description: >
+  A process on the monitored host started listening on a port below the
+  dynamic range. Check that the service is expected. Backdoors and
+  unapproved services show up here.
+severity: low
+type: match
+where:
+  source: host-agent
+  action: port_opened
+  dst_port|lt: 49152
+group_by: [host, dst_port]
+dedupe: 1d
+title: "Port {dst_port} opened on {host} by {process}"
