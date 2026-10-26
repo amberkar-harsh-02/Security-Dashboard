@@ -1,0 +1,10 @@
+[Unit]
+Description=Watch the SIEM blocklist for changes
+
+[Path]
+# The SIEM replaces this file atomically whenever a block starts, ends or expires.
+PathChanged=/var/lib/siem/blocklist.json
+Unit=siem-firewall.service
+
+[Install]
+WantedBy=multi-user.target

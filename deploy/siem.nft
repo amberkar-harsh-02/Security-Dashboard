@@ -1,0 +1,19 @@
+# nftables table for addresses blocked by the SIEM. Loaded by siem-firewall-sync when missing.
+# Its own table and chain, independent of ufw or any other firewall rules on the host.
+table inet siem {
+    set blocked4 {
+        type ipv4_addr
+        flags timeout
+    }
+
+    set blocked6 {
+        type ipv6_addr
+        flags timeout
+    }
+
+    chain input {
+        type filter hook input priority -10; policy accept;
+        ip saddr @blocked4 drop
+        ip6 saddr @blocked6 drop
+    }
+}

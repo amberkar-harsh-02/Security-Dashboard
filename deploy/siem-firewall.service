@@ -1,0 +1,12 @@
+[Unit]
+Description=Apply the SIEM blocklist to nftables
+After=network.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/bin/python3 /usr/local/sbin/siem-firewall-sync
+
+[Install]
+# Runs at boot so the table and the remaining blocks come back after a restart.
+WantedBy=multi-user.target

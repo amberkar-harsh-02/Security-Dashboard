@@ -1,0 +1,16 @@
+# Add inside your site block (e.g. example.org { ... }) in /etc/caddy/Caddyfile.
+# Put it before the final catch-all `handle { ... }` block.
+#
+# The SIEM's own sign-in protects the dashboard and API (lockout after repeated failures,
+# CSRF tokens, and an alert rule for sign-in guessing). Log senders use the X-API-Key header.
+# For an extra layer, add a `basic_auth { <user> <hash from caddy hash-password> }` block
+# inside handle_path; log senders would then need those credentials too.
+
+    redir /siem /siem/ 308
+
+    handle_path /siem/* {
+        reverse_proxy 127.0.0.1:5050 {
+            # Live updates (server-sent events) must not be buffered.
+            flush_interval -1
+        }
+    }

@@ -1,0 +1,28 @@
+[Unit]
+Description=Security Dashboard (SIEM)
+After=network.target
+
+[Service]
+User=siem
+Group=siem
+WorkingDirectory=/opt/siem/backend
+EnvironmentFile=/etc/siem/siem.env
+# One process only: the syslog listener, host agent and performance sampler run inside it.
+# Waitress drops X-Forwarded-* headers from untrusted senders by default; Caddy on this
+# machine is the one proxy to trust, so sign-in events record the real client address.
+ExecStart=/opt/siem/backend/venv/bin/waitress-serve --listen=127.0.0.1:5050 --threads=32 \
+    --trusted-proxy=127.0.0.1 --trusted-proxy-count=1 \
+    --trusted-proxy-headers="x-forwarded-for x-forwarded-proto x-forwarded-host" \
+    wsgi:app
+Restart=on-failure
+RestartSec=5
+
+# Hardening: the service can only write its database folder.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/siem
+
+[Install]
+WantedBy=multi-user.target
