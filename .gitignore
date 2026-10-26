@@ -8,3 +8,6 @@ node_modules/
 build/
 .DS_Store
 .env
+# SIEM runtime data
+backend/data/
+.pytest_cache/
